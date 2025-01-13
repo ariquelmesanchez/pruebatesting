@@ -1,6 +1,6 @@
 const request = require("supertest");
 const server = require("../index");
-const { default: test } = require("node:test");
+
 
 describe("Operaciones CRUD de cafes", () => {
     test("La ruta GET cafes devuelve un status code 200 y un array de al menos un objeto", async () => {
@@ -17,7 +17,7 @@ describe("Operaciones CRUD de cafes", () => {
             .delete(`/cafes/${idDoesNotExist}`)
             .set("Authorization", "Bearer Token");
         expect(response.status).toBe(404);
-        expect(response.body.message).toBe("No se ha encontrado ningún café con ese id");
+        expect(response.body.message).toBe("No se encontró ningún cafe con ese id");
     });
 
     test("La ruta POST /cafes agrega un nuevo café y devuelve un código 201", async () => {
@@ -38,9 +38,11 @@ describe("Operaciones CRUD de cafes", () => {
     });
 
     test("Devuelve 404 para rutas no existentes", async () => {
-        const response = await request(app).get("/ruta_no_existente");
+        const invalidRoute = "/ruta_inexistente";
+        // Realiza la solicitud GET a la ruta no existente
+        const response = await request(server).get(invalidRoute);
         expect(response.status).toBe(404);
         expect(response.body.message).toBe("La ruta que intenta consultar no existe");
-      });
+    });
       
 });
