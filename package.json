@@ -10,8 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "desafio": "file:",
-    "express": "^4.18.1",
+    "express": "^4.21.2",
     "jest": "^28.1.3",
-    "supertest": "^6.2.4"
+    "node": "^22.13.0",
+    "nodemon": "^3.1.9",
+    "supertest": "^6.3.4"
   }
 }
